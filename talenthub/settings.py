@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_env
+load_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-0_n@aj@qlqw4^t5&kr^=hb6i^=lkb!yn@9ux1r$z8*4=boqi%t"
+SECRET_KEY = os.GETENV('SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,16 +84,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-# DATABASES = {
-#         'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'Talenthub',
-#             'ENFORCE_SCHEMA': False,
-#             'CLIENT': {
-#                 'host': 'mongodb+srv://balaji:balaji@cluster0.retbig8.mongodb.net/'
-#             }  
-#         }
-# }
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -140,11 +132,11 @@ EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
-EMAIL_HOST_USER='dwarampudibalajireddy@gmail.com'
-EMAIL_HOST_PASSWORD='dlzukfblnswcxzdx'
+EMAIL_HOST_USER= os.GETENV("EMAIL")
+EMAIL_HOST_PASSWORD = os.GETENV("PASSWORD")
 
 SESSION_COOKIE_AGE=5000
 SESSION_EXPIRE_SECONDS=5000
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY=True
 
-DEBUG = True
+DEBUG = False
